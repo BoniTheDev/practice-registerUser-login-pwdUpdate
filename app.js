@@ -34,6 +34,8 @@ const validatePassword = (password) => {
   return password.length > 4;
 };
 
+// Create New User API
+
 app.post("/register", async (request, response) => {
   const { username, name, password, gender, location } = request.body;
   const hashedPassword = await bcrypt.hash(password, 10);
@@ -65,6 +67,9 @@ app.post("/register", async (request, response) => {
   }
 });
 
+
+// Login User API 
+
 app.post("/login", async (request, response) => {
   const { username, password } = request.body;
   const selectUserQuery = `SELECT * FROM user WHERE username = '${username}';`;
@@ -86,6 +91,8 @@ app.post("/login", async (request, response) => {
     }
   }
 });
+
+// Update Password API
 
 app.put("/change-password", async (request, response) => {
   const { username, oldPassword, newPassword } = request.body;
